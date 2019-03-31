@@ -2,10 +2,28 @@ package log
 
 import (
 	golog "log"
+	"strings"
 )
 
 // Level Log level to use in `SetLevel()` function
 type Level int
+
+func (l Level) String() string {
+	if l == LevelFatal {
+		return "FATAL"
+	} else if l == LevelError {
+		return "ERROR"
+	} else if l == LevelWarn {
+		return "WARN"
+	} else if l == LevelInfo {
+		return "INFO"
+	} else if l == LevelDebug {
+		return "DEBUG"
+	} else if l == LevelTrace {
+		return "TRACE"
+	}
+	return "UNKNOWN"
+}
 
 const (
 	// LevelFatal to be used with `SetLevel(LevelFatal)`, to set log level to only Fatal calls
@@ -36,6 +54,38 @@ var (
 // LevelFatal, LevelError, LevelWarn, LevelInfo, LevelDebug and LevelTrace.
 func SetLevel(level Level) {
 	logLevel = level
+}
+
+// ParseLevel takes as string and return the corresponding level.  The strLevel argument
+// is case insensitive. The strLevel argument just needs to begin with one of the logging
+// level names.
+// Logging level names are TRACE, DEBUG, INFO, WARN, ERROR and FATAL
+//
+// e.g.: ParseLevel("debug")     // LevelDebug
+// e.g.: ParseLevel("DEBUG")     // LevelDebug
+// e.g.: ParseLevel("debugging") // LevelDebug
+// e.g.: ParseLevel("warn")      // LevelWarn
+// e.g.: ParseLevel("warni")     // LevelWarn
+// e.g.: ParseLevel("warnin")    // LevelWarn
+// e.g.: ParseLevel("warning")   // LevelWarn
+// e.g.: ParseLevel("WARNING")   // LevelWarn
+//
+func ParseLevel(strLevel string) Level {
+	str := strings.ToLower(strLevel)
+	if strings.HasPrefix(str, "trace") {
+		return LevelTrace
+	} else if strings.HasPrefix(str, "debug") {
+		return LevelDebug
+	} else if strings.HasPrefix(str, "info") {
+		return LevelInfo
+	} else if strings.HasPrefix(str, "warn") {
+		return LevelWarn
+	} else if strings.HasPrefix(str, "error") {
+		return LevelError
+	} else if strings.HasPrefix(str, "fatal") {
+		return LevelFatal
+	}
+	return LevelInfo
 }
 
 // Fatal is equivalent to Print() followed by a call to os.Exit(1).
