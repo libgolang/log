@@ -88,9 +88,9 @@ func ParseLevel(strLevel string) Level {
 	return LevelInfo
 }
 
-// Fatal is equivalent to Print() followed by a call to os.Exit(1).
-func Fatal(v ...interface{}) {
-	golog.Fatal(v...)
+// Fatal Fatalf alias
+func Fatal(format string, v ...interface{}) {
+	golog.Fatalf(format, v...)
 }
 
 // Fatalf is equivalent to Printf() followed by a call to os.Exit(1).
@@ -98,14 +98,12 @@ func Fatalf(format string, v ...interface{}) {
 	golog.Fatalf(format, v...)
 }
 
-// Error calls Golang's log.Print which in turn calls Output to print to the standard logger.
-// It will call log.Printf if the log level is set Error or above.
-// Arguments are handled in the manner of fmt.Print.
-func Error(v ...interface{}) {
+// Error alias for Errorf
+func Error(format string, v ...interface{}) {
 	if logLevel < LevelError {
 		return
 	}
-	golog.Print(v...)
+	golog.Printf(format, v...)
 }
 
 // Errorf calls Golang's log.Printf which in turn calls Output to print to the standard logger.
@@ -118,14 +116,12 @@ func Errorf(format string, v ...interface{}) {
 	golog.Printf(format, v...)
 }
 
-// Warn calls Golang's log.Print which in turn calls Output to print to the standard logger.
-// It will call log.Printf if the log level is set Warn or above.
-// Arguments are handled in the manner of fmt.Print.
-func Warn(v ...interface{}) {
+// Warn alias for Warnf
+func Warn(format string, v ...interface{}) {
 	if logLevel < LevelWarn {
 		return
 	}
-	golog.Print(v...)
+	golog.Printf(format, v...)
 }
 
 // Warnf calls Golang's log.Printf which in turn calls Output to print to the standard logger.
@@ -138,14 +134,12 @@ func Warnf(format string, v ...interface{}) {
 	golog.Printf(format, v...)
 }
 
-// Info calls Golang's log.Print which in turn calls Output to print to the standard logger.
-// It will only call log.Printf if the log level is set Info or above.
-// Arguments are handled in the manner of fmt.Print.
-func Info(v ...interface{}) {
+// Info alias for Infof
+func Info(format string, v ...interface{}) {
 	if logLevel < LevelInfo {
 		return
 	}
-	golog.Print(v...)
+	golog.Printf(format, v...)
 }
 
 // Infof calls Golang's log.Printf which in turn calls Output to print to the standard logger.
@@ -158,14 +152,12 @@ func Infof(format string, v ...interface{}) {
 	golog.Printf(format, v...)
 }
 
-// Debug calls Golang's log.Print which in turn calls Output to print to the standard logger.
-// It will only call log.Printf if the log level is set Debug or above.
-// Arguments are handled in the manner of fmt.Print.
-func Debug(v ...interface{}) {
+// Debug alias for Debugf
+func Debug(format string, v ...interface{}) {
 	if logLevel < LevelDebug {
 		return
 	}
-	golog.Print(v...)
+	golog.Printf(format, v...)
 }
 
 // Debugf calls Golang's log.Printf which in turn calls Output to print to the standard logger.
@@ -178,14 +170,12 @@ func Debugf(format string, v ...interface{}) {
 	golog.Printf(format, v...)
 }
 
-// Trace calls Golang's log.Print which in turn calls Output to print to the standard logger.
-// It will only call log.Printf if the log level is set Trace or above.
-// Arguments are handled in the manner of fmt.Print.
-func Trace(v ...interface{}) {
+// Trace alias for Tracef
+func Trace(format string, v ...interface{}) {
 	if logLevel < LevelTrace {
 		return
 	}
-	golog.Print(v...)
+	golog.Printf(format, v...)
 }
 
 // Tracef calls Golang's log.Printf which in turn calls Output to print to the standard logger.
