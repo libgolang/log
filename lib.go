@@ -46,14 +46,14 @@ const (
 )
 
 var (
-	logLevel = LevelInfo
+	LogLevel = LevelInfo
 )
 
 // SetLevel is used to set the logging level.  This library only support setting
 // logging level globally.  The possible arguments to this function are:
 // LevelFatal, LevelError, LevelWarn, LevelInfo, LevelDebug and LevelTrace.
 func SetLevel(level Level) {
-	logLevel = level
+	LogLevel = level
 }
 
 // ParseLevel takes as string and return the corresponding level.  The strLevel argument
@@ -100,7 +100,7 @@ func Fatalf(format string, v ...interface{}) {
 
 // Error alias for Errorf
 func Error(format string, v ...interface{}) {
-	if logLevel < LevelError {
+	if LogLevel < LevelError {
 		return
 	}
 	golog.Printf(format, v...)
@@ -110,7 +110,7 @@ func Error(format string, v ...interface{}) {
 // It will call log.Printf if the log level is set Error or above.
 // Arguments are handled in the manner of fmt.Printf.
 func Errorf(format string, v ...interface{}) {
-	if logLevel < LevelError {
+	if LogLevel < LevelError {
 		return
 	}
 	golog.Printf(format, v...)
@@ -118,7 +118,7 @@ func Errorf(format string, v ...interface{}) {
 
 // Warn alias for Warnf
 func Warn(format string, v ...interface{}) {
-	if logLevel < LevelWarn {
+	if LogLevel < LevelWarn {
 		return
 	}
 	golog.Printf(format, v...)
@@ -128,7 +128,7 @@ func Warn(format string, v ...interface{}) {
 // It will call log.Printf if the log level is set Warn or above.
 // Arguments are handled in the manner of fmt.Printf.
 func Warnf(format string, v ...interface{}) {
-	if logLevel < LevelWarn {
+	if LogLevel < LevelWarn {
 		return
 	}
 	golog.Printf(format, v...)
@@ -136,7 +136,7 @@ func Warnf(format string, v ...interface{}) {
 
 // Info alias for Infof
 func Info(format string, v ...interface{}) {
-	if logLevel < LevelInfo {
+	if LogLevel < LevelInfo {
 		return
 	}
 	golog.Printf(format, v...)
@@ -146,7 +146,7 @@ func Info(format string, v ...interface{}) {
 // It will only call log.Printf if the log level is set Info or above.
 // Arguments are handled in the manner of fmt.Printf.
 func Infof(format string, v ...interface{}) {
-	if logLevel < LevelInfo {
+	if LogLevel < LevelInfo {
 		return
 	}
 	golog.Printf(format, v...)
@@ -154,7 +154,7 @@ func Infof(format string, v ...interface{}) {
 
 // Debug alias for Debugf
 func Debug(format string, v ...interface{}) {
-	if logLevel < LevelDebug {
+	if LogLevel < LevelDebug {
 		return
 	}
 	golog.Printf(format, v...)
@@ -164,7 +164,7 @@ func Debug(format string, v ...interface{}) {
 // It will only call log.Printf if the log level is set Debug or above.
 // Arguments are handled in the manner of fmt.Printf.
 func Debugf(format string, v ...interface{}) {
-	if logLevel < LevelDebug {
+	if LogLevel < LevelDebug {
 		return
 	}
 	golog.Printf(format, v...)
@@ -172,7 +172,7 @@ func Debugf(format string, v ...interface{}) {
 
 // Trace alias for Tracef
 func Trace(format string, v ...interface{}) {
-	if logLevel < LevelTrace {
+	if LogLevel < LevelTrace {
 		return
 	}
 	golog.Printf(format, v...)
@@ -182,7 +182,7 @@ func Trace(format string, v ...interface{}) {
 // It will only call log.Printf if the log level is set Trace or above.
 // Arguments are handled in the manner of fmt.Printf.
 func Tracef(format string, v ...interface{}) {
-	if logLevel < LevelTrace {
+	if LogLevel < LevelTrace {
 		return
 	}
 	golog.Printf(format, v...)

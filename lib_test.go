@@ -13,8 +13,8 @@ func TestSetLevel(t *testing.T) {
 		SetLevel(level)
 
 		// then
-		if logLevel != level {
-			t.Errorf("Expected %s, bug got %s", level, logLevel)
+		if LogLevel != level {
+			t.Errorf("Expected %s, bug got %s", level, LogLevel)
 		}
 	}
 }
